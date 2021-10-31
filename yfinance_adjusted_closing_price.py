@@ -1,5 +1,6 @@
 import yfinance as yf
 import matplotlib.pyplot as plt
+import pandas as pd
 
 class Chart(object):
     def __init__(self, x_length, y_length, title, x_label, y_label, title_font_size, label_font_size, color, linestyle, linewidth):
@@ -42,7 +43,7 @@ if __name__ == '__main__':
     # downloading data 
     data = pd.DataFrame(columns=ticker_list)
     for ticker in ticker_list:
-        data[ticker] = yf.download(ticker, start_date, end_date)['Adj Close']
+        data[ticker] = yf.download(ticker, start=start_date, end=end_date)['Adj Close']
 
     # creating chart
     adj_close_price = Chart(10, 7, 'Adjusted Close Price', 'Price', 'Year', 16, 14, 'k', '-', .5)
